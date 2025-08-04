@@ -38,6 +38,7 @@ public class AnimatorStateHandler : MonoBehaviour
         };
 
     private Animator m_animator;
+    private bool m_can_move = true;
 
     void Awake()
     {
@@ -86,5 +87,15 @@ public class AnimatorStateHandler : MonoBehaviour
     public void NotifyEndAttack()
     {   // Just go to idle anim state.
         PlayState(AnimatorState.IdleRunningBT);
+    }
+
+    public void SetCanMove(bool flag)
+    {
+        m_can_move = flag;
+    }
+
+    public bool GetCanMove()
+    {
+        return m_can_move;
     }
 }

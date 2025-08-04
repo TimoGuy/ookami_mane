@@ -24,4 +24,14 @@ public class AnimationEventHandler : MonoBehaviour
     {
         m_anim_state_handler.NotifyEndAttack();
     }
+
+    void EnableMove()
+    {
+        m_anim_state_handler.SetCanMove(true);
+    }
+
+    void DisableMove()
+    {
+        m_anim_state_handler.SetCanMove(false);
+    }
 }

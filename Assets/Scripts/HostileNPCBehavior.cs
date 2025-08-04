@@ -6,7 +6,6 @@ public class HostileNPCBehavior : MonoBehaviour
     public float m_ideal_distance_away = 2.0f;
     public float m_attack_range = 3.0f;
     public float m_move_speed = 5.0f;
-    public bool m_can_move = true;
 
     public CharacterController m_char_con;
     public Rigidbody m_char_model;
@@ -28,7 +27,7 @@ public class HostileNPCBehavior : MonoBehaviour
 
     void Update()
     {
-        if (m_can_move)
+        if (m_char_animator.GetCanMove())
         {   // Move towards tracking transform.
             var char_con_pos = m_char_con.transform.position;
             var flat_delta_pos = m_tracking_transform.position - char_con_pos;
