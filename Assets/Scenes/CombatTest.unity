@@ -519,7 +519,7 @@ Transform:
   m_GameObject: {fileID: 1001297429}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141549466}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45bf23563012c2749b27e53c29fb3447, type: 3}
   m_Name: 
@@ -736,6 +736,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530def2e277e6444bad70438a9357ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_action_move: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_action_look: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_action_attack: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_action_guard: {fileID: -100105276481664533, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_cam_sensitivity_x: 0.01
+  m_cam_sensitivity_y: 0.005
+  m_cam_distance: 5
+  m_cam_focus_offset_y: 2
+  m_move_speed: 5
+  m_guarding_move_speed: 0.75
+  m_char_con: {fileID: 1001297431}
+  m_char_model: {fileID: 733984978}
+  m_char_animator: {fileID: 1592619333}
 --- !u!1001 &5712290562563024874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -754,7 +767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2091525431296868081, guid: 5662ba7c0547f184dae9681785395e54, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 2091525431296868081, guid: 5662ba7c0547f184dae9681785395e54, type: 3}
       propertyPath: m_LocalPosition.z
