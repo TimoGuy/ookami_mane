@@ -6,6 +6,7 @@ public class HostileNPCBehavior : MonoBehaviour
     public float m_ideal_distance_away = 2.0f;
     public float m_attack_range = 3.0f;
     public float m_move_speed = 5.0f;
+    public float m_knockback_speed = 4.0f;
 
     public CharacterController m_char_con;
     public Rigidbody m_char_model;
@@ -27,6 +28,7 @@ public class HostileNPCBehavior : MonoBehaviour
 
     void Update()
     {
+        Vector3 mvt_velocity = Vector3.zero;
         if (m_char_animator.GetCanMove())
         {   // Move towards tracking transform.
             var char_con_pos = m_char_con.transform.position;
@@ -39,8 +41,7 @@ public class HostileNPCBehavior : MonoBehaviour
             var next_point = Vector3.MoveTowards(char_con_pos,
                                                  target_point,
                                                  m_move_speed * Time.deltaTime);
-            m_char_con.Move(next_point - char_con_pos);
-            m_char_model.MovePosition(m_char_con.transform.position);  // Pos updates immediately after `.Move()`.
+            mvt_velocity += ((next_point - char_con_pos) / Time.deltaTime);
 
             if (flat_delta_pos.sqrMagnitude > 0.001f)
             {   // Turn towards tracking transform.
@@ -52,11 +53,25 @@ public class HostileNPCBehavior : MonoBehaviour
             }
         }
 
+        if (m_char_animator.GetKnockback())
+        {
+            var knockback_velocity = new Vector3(0.0f, 0.0f, -m_knockback_speed);
+            knockback_velocity = (m_char_model.transform.rotation * knockback_velocity);
+
+            // Apply knockback.
+            mvt_velocity += knockback_velocity;
+        }
+
+        if (mvt_velocity.sqrMagnitude > 0.000001f)
+        {   // Apply movement.
+            m_char_con.Move(mvt_velocity * Time.deltaTime);
+            m_char_model.MovePosition(m_char_con.transform.position);  // Pos updates immediately after `.Move()`.
+        }
+
         // Update animator running speed.
         var running_speed = (m_char_con.transform.position - m_prev_cc_pos).magnitude
                             / Time.deltaTime
                             / m_move_speed;
-        Debug.Log(running_speed);
         m_char_animator.SetIdleRunningBTLerpVal(running_speed);
         m_prev_cc_pos = m_char_con.transform.position;
 

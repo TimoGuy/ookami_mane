@@ -38,11 +38,14 @@ public class AnimatorStateHandler : MonoBehaviour
         };
 
     private Animator m_animator;
+    private AnimationEventHandler m_anim_eve_handler;
     private bool m_can_move = true;
+    private bool m_is_knockback = false;
 
     void Awake()
     {
         m_animator = GetComponent<Animator>();
+        m_anim_eve_handler = GetComponent<AnimationEventHandler>();
 
         if (false)
         {
@@ -97,5 +100,20 @@ public class AnimatorStateHandler : MonoBehaviour
     public bool GetCanMove()
     {
         return m_can_move;
+    }
+
+    public void SetKnockback(bool flag)
+    {
+        m_is_knockback = flag;
+    }
+
+    public bool GetKnockback()
+    {
+        return m_is_knockback;
+    }
+
+    public void DisableAllHurtboxes()
+    {   // @HACK: Ngl, this is pretty hacky.
+        m_anim_eve_handler.DisableAllHurtboxes();
     }
 }

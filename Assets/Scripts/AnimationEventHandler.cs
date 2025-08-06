@@ -20,6 +20,14 @@ public class AnimationEventHandler : MonoBehaviour
         m_hurtboxes[idx].enabled = false;
     }
 
+    public void DisableAllHurtboxes()
+    {
+        foreach (var hurtbox in m_hurtboxes)
+        {
+            hurtbox.enabled = false;
+        }
+    }
+
     void EndAttack()
     {
         m_anim_state_handler.NotifyEndAttack();
@@ -33,5 +41,23 @@ public class AnimationEventHandler : MonoBehaviour
     void DisableMove()
     {
         m_anim_state_handler.SetCanMove(false);
+    }
+
+    void StartKnockback()
+    {
+        m_anim_state_handler.SetKnockback(true);
+        m_anim_state_handler.SetCanMove(false);
+    }
+
+    void EndKnockback()
+    {
+        m_anim_state_handler.SetKnockback(false);
+        m_anim_state_handler.SetCanMove(true);
+    }
+
+    void EndHurt()
+    {
+        // @NOTE: @HACK: Using the same thing.
+        m_anim_state_handler.NotifyEndAttack();
     }
 }
